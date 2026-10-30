@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Cleaned customer profile records."
+    columns:
+      - name: customer_id
+        description: "Primary key for customers."
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    description: "Cleaned customer orders."
+    columns:
+      - name: order_id
+        description: "Primary key for orders."
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key referencing stg_customers."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: order_status
+        description: "Lifecycle status of the order."
+        tests:
+          - accepted_values:
+              values: ['placed', 'shipped', 'completed', 'returned']
+
+  - name: stg_payments
+    description: "Cleaned payment transaction records."
+    columns:
+      - name: payment_id
+        description: "Primary key for payments."
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Foreign key referencing stg_orders."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_orders')
+              field: order_id
+      - name: payment_method
+        description: "Method used to complete the payment."
+        tests:
+          - accepted_values:
+              values: ['credit_card', 'bank_transfer', 'gift_card']

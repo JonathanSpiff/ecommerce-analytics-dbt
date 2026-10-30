@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: ecommerce
+    database: RAW
+    schema: ECOMMERCE
+    description: "Raw operational data from the e-commerce transactional store."
+    
+    tables:
+      - name: raw_customers
+        description: "Raw customer profile records."
+        columns:
+          - name: id
+            description: "Primary key identifier for customer."
+            
+      - name: raw_orders
+        description: "Raw customer purchase orders."
+        columns:
+          - name: id
+            description: "Primary key identifier for order."
+            
+      - name: raw_payments
+        description: "Raw payment transactions associated with orders."
+        columns:
+          - name: id
+            description: "Primary key identifier for payment."
