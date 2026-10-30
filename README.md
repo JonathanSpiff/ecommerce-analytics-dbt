@@ -17,3 +17,7 @@ An end-to-end data transformation pipeline built using **Snowflake** and **dbt C
 [ Marts / Dimensional Layer (Tables) ]
 ├── fct_orders (Fact Table)
 └── dim_customers (Dimension Table with Customer Lifetime Value)
+
+## Data Lineage (DAG)
+
+![dbt Lineage Graph](lineage_graph.png)
